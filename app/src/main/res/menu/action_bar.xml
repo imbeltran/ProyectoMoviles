@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/principalItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Página Principal" />
+    <item
+        android:id="@+id/adoptaritem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Adoptar" />
+    <item
+        android:id="@+id/registrarItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Registrar" />
+    <item
+        android:id="@+id/listadoItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Listado" />
+</menu>
