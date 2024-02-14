@@ -32,7 +32,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/eTNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -67,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/eTChip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:height="48dp"
@@ -75,8 +75,8 @@
         android:hint="Número de chip"
         android:inputType="text"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText"
-        app:layout_constraintStart_toStartOf="@+id/editTextText"
+        app:layout_constraintEnd_toEndOf="@+id/eTNombre"
+        app:layout_constraintStart_toStartOf="@+id/eTNombre"
         app:layout_constraintTop_toTopOf="@+id/textView3" />
 
     <TextView
@@ -93,15 +93,15 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
-        android:id="@+id/editTextText3"
+        android:id="@+id/eTRaza"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Raza"
         android:inputType="text"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText2"
-        app:layout_constraintStart_toStartOf="@+id/editTextText2"
+        app:layout_constraintEnd_toEndOf="@+id/eTChip"
+        app:layout_constraintStart_toStartOf="@+id/eTChip"
         app:layout_constraintTop_toTopOf="@+id/textView4" />
 
     <TextView
@@ -118,15 +118,15 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <EditText
-        android:id="@+id/editTextText4"
+        android:id="@+id/eTEdad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Edad"
         android:inputType="text"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText3"
-        app:layout_constraintStart_toStartOf="@+id/editTextText3"
+        app:layout_constraintEnd_toEndOf="@+id/eTRaza"
+        app:layout_constraintStart_toStartOf="@+id/eTRaza"
         app:layout_constraintTop_toTopOf="@+id/textView5" />
 
     <TextView
@@ -143,12 +143,12 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinnerSexo"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:entries="@array/sexos"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText4"
-        app:layout_constraintStart_toStartOf="@+id/editTextText4"
+        app:layout_constraintEnd_toEndOf="@+id/eTEdad"
+        app:layout_constraintStart_toStartOf="@+id/eTEdad"
         app:layout_constraintTop_toTopOf="@+id/textView7" />
 
     <Button

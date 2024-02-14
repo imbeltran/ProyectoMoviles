@@ -6,10 +6,14 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.room.Room
 import com.example.perreraspaco.databinding.ActivityRegistrarPerroBinding
+import com.example.perreraspaco.db.AppDataBase
+import com.example.perreraspaco.model.Perro
 
 class RegistrarPerroActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegistrarPerroBinding
+    private lateinit var db: AppDataBase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegistrarPerroBinding.inflate(layoutInflater)
@@ -17,7 +21,18 @@ class RegistrarPerroActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar3)
 
+        db = Room
+            .databaseBuilder(
+                this,
+                AppDataBase::class.java,
+                AppDataBase.DATABASE_NAME
+            )
+            .allowMainThreadQueries().build()
+
         binding.botonRegistrar.setOnClickListener{
+            val perro = Perro(binding.eTChip.text.toString(), binding.eTNombre.text.toString(), binding.eTRaza.text.toString(), binding.eTEdad.text.toString().toInt(), binding.spinnerSexo.selectedItem.toString())
+            Toast.makeText(this, "Perro " +perro.nombre+" añadido", Toast.LENGTH_LONG).show()
+            db.perroDao().save(perro)
             val listadoPerrosActivityIntent = Intent(this, ListadoPerrosActivity::class.java)
             startActivity(listadoPerrosActivityIntent)
         }

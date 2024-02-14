@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.perreraspaco.databinding.PerroLayoutBinding
+import com.example.perreraspaco.db.AppDataBase
+import com.example.perreraspaco.model.Perro
 
-class PerroAdapter(var perros:List<Perro>, val context: Context):
+class PerroAdapter(var perros:List<Perro>, val context: Context, val db:AppDataBase):
     RecyclerView.Adapter<PerroAdapter.ItemViewHolder> (){
 
     private val layoutInflater = LayoutInflater.from(context)
@@ -33,13 +35,16 @@ class PerroAdapter(var perros:List<Perro>, val context: Context):
         binding.tvEdad.text = perro.edad.toString()
         binding.tvRaza.text = perro.raza
         binding.tvSexo.text = perro.sexo
-        binding.tvNumChip.text = perro.chip.toString()
+        binding.tvNumChip.text = perro.chip
 
         binding.editButton.setOnClickListener {
             Toast.makeText(context, "Editando el perro ${perro.nombre}", Toast.LENGTH_LONG).show()
         }
         binding.deleteButton.setOnClickListener {
             Toast.makeText(context, "Eliminando el perro ${perro.nombre}", Toast.LENGTH_LONG).show()
+            db.perroDao().delete(perro.chip)
+            perros=db.perroDao().list()
+            notifyDataSetChanged()
         }
     }
 

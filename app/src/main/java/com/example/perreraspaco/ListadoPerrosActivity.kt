@@ -7,10 +7,14 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import com.example.perreraspaco.databinding.ActivityListadoPerrosBinding
+import com.example.perreraspaco.db.AppDataBase
+import com.example.perreraspaco.model.Perro
 
 class ListadoPerrosActivity : AppCompatActivity() {
     private lateinit var binding: ActivityListadoPerrosBinding
+    private lateinit var db: AppDataBase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityListadoPerrosBinding.inflate(layoutInflater)
@@ -18,15 +22,24 @@ class ListadoPerrosActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar4)
 
+        db = Room
+            .databaseBuilder(
+                this,
+                AppDataBase::class.java,
+                AppDataBase.DATABASE_NAME
+            )
+            .allowMainThreadQueries().build()
+
+
         binding.perroRecyclerView.layoutManager =
             GridLayoutManager(this, 1, RecyclerView.VERTICAL, false)
         binding.perroRecyclerView.adapter = PerroAdapter(
-            listOf(
-                Perro("Chip", 123456, "colie", 9, "M"),
-                Perro("Roy", 234567, "pug", 12, "M")
-            ), this
+            db.perroDao().list(), this, db
         )
-
+        binding.addButton.setOnClickListener{
+            val registrarPerroActivityIntent = Intent(this, RegistrarPerroActivity::class.java)
+            startActivity(registrarPerroActivityIntent)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
