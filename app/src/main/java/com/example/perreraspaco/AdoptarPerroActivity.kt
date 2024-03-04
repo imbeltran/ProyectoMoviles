@@ -5,16 +5,36 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import com.example.perreraspaco.databinding.ActivityAdoptarPerroBinding
+import com.example.perreraspaco.db.AppDataBase
 
 class AdoptarPerroActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAdoptarPerroBinding
+    private lateinit var db: AppDataBase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAdoptarPerroBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar2)
+
+        db = Room
+            .databaseBuilder(
+                this,
+                AppDataBase::class.java,
+                AppDataBase.DATABASE_NAME
+            )
+            .allowMainThreadQueries().build()
+
+
+        binding.perroRecyclerView.layoutManager =
+            GridLayoutManager(this, 1, RecyclerView.VERTICAL, false)
+        binding.perroRecyclerView.adapter = PerroAdoptarAdapter(
+            db.perroDao().list(), this, db
+        )
 
     }
 
